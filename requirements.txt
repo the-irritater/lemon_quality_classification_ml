@@ -1,0 +1,7 @@
+mahotas
+scikit-learn
+numpy
+pandas
+matplotlib
+seaborn
+skillsnetwork

@@ -15,3 +15,7 @@ Hiroshima Lemon Dataset
 
 ## Results
 Logistic Regression achieved highest validation accuracy.
+
+## Contributors
+- Sanman – Project implementation, feature extraction, model training
+- Rutuja – Data preprocessing, visualization, documentation

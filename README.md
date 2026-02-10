@@ -15,7 +15,3 @@ Hiroshima Lemon Dataset
 
 ## Results
 Logistic Regression achieved highest validation accuracy.
-
-## How to Run
-pip install -r requirements.txt
-python lemon_quality.py

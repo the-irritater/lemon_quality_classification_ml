@@ -23,7 +23,7 @@ Extracted Gray-Level Co-occurrence Matrix (GLCM) statistics capturing spatial pi
 ### Model Performance Comparison
 
 | Model Architecture | Feature Representation | Validation Accuracy | Notes |
-|---|---|---|---|
+|-|-|-|-|
 | Logistic Regression | Haralick Texture (GLCM) | 86.5% | Optimal classical baseline |
 | Support Vector Machine (RBF) | Haralick Texture (GLCM) | 84.2% | High precision on Disqualified class |
 | K-Nearest Neighbors | Haralick Texture (GLCM) | 78.0% | Sensitive to feature normalization |

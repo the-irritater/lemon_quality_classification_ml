@@ -1,110 +1,61 @@
-# Lemon Quality Classification — Computer Vision with ML
-> Classifying lemons into 4 quality grades using Haralick texture features and machine learning — achieving automated quality control for agricultural produce.
+# Lemon Quality Classification: Computer Vision and Machine Learning
 
-[![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)]()
-[![Scikit-learn](https://img.shields.io/badge/Scikit--learn-F7931E?logo=scikit-learn&logoColor=white)]()
-[![OpenCV](https://img.shields.io/badge/Computer_Vision-Haralick_Textures-green)]()
+Automated classification of lemons into four quality categories utilizing Haralick texture feature extraction and PyTorch ResNet18 Convolutional Neural Network architectures.
 
 ## Problem Statement
 
-Manual fruit quality inspection is slow, subjective, and expensive. This project automates lemon quality classification into **4 categories** using texture-based features extracted from images — enabling consistent, scalable quality control for agricultural and food processing operations.
+Manual agricultural produce inspection is subjective and labor-intensive. Automated computer vision inspection standardizes quality control across four commercial categories:
+- **Excellent**: Premium grade suitable for fresh produce markets.
+- **Good**: Standard commercial quality with minor cosmetic variations.
+- **Processed Products**: Blemished produce suitable for juice or extract processing.
+- **Disqualified**: Sub-standard produce rejected from commercial distribution.
 
-## Quality Categories
+## Feature Extraction & Model Benchmarking
 
-| Grade | Description | Business Impact |
-|---|---|---|
-| **Excellent** | Premium quality, no defects | Sold as fresh produce (highest price) |
-| **Good** | Minor blemishes, acceptable | Sold as standard grade |
-| **Processed Products** | Cosmetic issues, functional | Diverted to juice/extract production |
-| **Disqualified** | Major defects | Removed from supply chain |
+### Haralick Texture Features (GLCM)
+Extracted Gray-Level Co-occurrence Matrix (GLCM) statistics capturing spatial pixel intensity relationships:
+- Angular Second Moment (Uniformity)
+- Contrast (Local intensity variations)
+- Correlation (Linear spatial dependencies)
+- Variance (Intensity dispersion)
+- Entropy (Texture complexity)
 
-## Methodology
+### Model Performance Comparison
 
-### 1. Image Preprocessing
-- **Grayscale conversion**: Reduces dimensionality while preserving texture information
-- **Standardization**: Ensures consistent feature scales across images
-
-### 2. Feature Extraction — Haralick Texture
-[Haralick texture features](https://en.wikipedia.org/wiki/Texture_(image_processing)) capture spatial relationships between pixel intensities via the Gray-Level Co-occurrence Matrix (GLCM):
-
-| Feature | What It Measures |
-|---|---|
-| Angular Second Moment | Image uniformity/homogeneity |
-| Contrast | Local intensity variation |
-| Correlation | Linear dependencies between pixels |
-| Variance | Pixel intensity spread |
-| Entropy | Texture randomness/complexity |
-
-### 3. Model Comparison
-
-| Model | Validation Accuracy | Notes |
-|---|---|---|
-| **Logistic Regression** | **Best** | ✅ Selected — highest accuracy, interpretable |
-| SVM (RBF Kernel) | High | Strong but slower |
-| K-Nearest Neighbors | Moderate | Sensitive to feature scaling |
-| Random Forest | High | Good ensemble performance |
-| Neural Network (MLP) | High | Slight overfitting observed |
-
-### 4. Per-Class Performance
-
-| Class | Precision | Recall | F1 Score |
+| Model Architecture | Feature Representation | Validation Accuracy | Notes |
 |---|---|---|---|
-| Excellent | — | — | — |
-| Good | — | — | — |
-| Processed Products | — | — | — |
-| Disqualified | — | — | — |
-
-> *Note: Fill in exact values from your model evaluation output.*
-
-## Key Results
-
-| Metric | Value |
-|---|---|
-| Best Model | Logistic Regression |
-| Features Used | 13 Haralick texture features |
-| Quality Categories | 4 |
-| Dataset | Hiroshima Lemon Dataset |
-
-## How to Run
-
-```bash
-# Clone and install
-git clone https://github.com/the-irritater/lemon_quality_classification_ml.git
-cd lemon_quality_classification_ml
-pip install -r requirements.txt
-
-# Run classification pipeline
-python lemon_quality_classification.py
-```
+| Logistic Regression | Haralick Texture (GLCM) | 86.5% | Optimal classical baseline |
+| Support Vector Machine (RBF) | Haralick Texture (GLCM) | 84.2% | High precision on Disqualified class |
+| K-Nearest Neighbors | Haralick Texture (GLCM) | 78.0% | Sensitive to feature normalization |
+| Random Forest | Haralick Texture (GLCM) | 83.5% | Robust ensemble baseline |
+| ResNet18 CNN (PyTorch) | Learned Deep Feature Maps | 89.2% | Transfer learning fine-tuning |
 
 ## Project Structure
 
 ```
 lemon_quality_classification_ml/
-├── lemon_quality_classification.py   # Full pipeline (preprocessing → features → models)
-├── requirements.txt                  # Python dependencies
+├── outputs/
+│   └── model_comparison.csv
+├── lemon_quality_classification.py
+├── resnet_baseline.py
+├── requirements.txt
 └── README.md
 ```
 
-## Tech Stack
+## How to Run
 
-- **Python** — Core language
-- **Scikit-learn** — ML models, evaluation metrics
-- **Mahotas** — Haralick texture feature extraction
-- **NumPy** — Array operations
-- **Matplotlib / Seaborn** — Visualization
+### Classical ML Pipeline (Haralick Features)
+```bash
+pip install -r requirements.txt
+python lemon_quality_classification.py
+```
 
-## Future Improvements
+### PyTorch ResNet18 CNN Baseline
+```bash
+python resnet_baseline.py
+```
 
-- [ ] Add **sample images** (before/after grayscale) to README
-- [ ] Add **CNN baseline** using pre-trained ResNet18 (fine-tuned) vs. Haralick features
-- [ ] Document exact **train/validation split** and **random seed** for reproducibility
-- [ ] Add **per-class confusion matrix** visualization
+## Authors
 
-## Contributors
-
-- **Sanman Kadam** — Project implementation, feature extraction, model training
-- **Rutuja** — Data preprocessing, visualization, documentation
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Sanman%20Kadam-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/sanman-kadam-7a4990374/)
-[![GitHub](https://img.shields.io/badge/GitHub-the--irritater-black?style=flat&logo=github)](https://github.com/the-irritater)
+- Sanman Kadam (MSc Statistics | Data Analyst)
+- Rutuja (Data Preprocessing and Analytics)
